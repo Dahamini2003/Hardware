@@ -1,0 +1,187 @@
+:root{
+  --accent:#f59e0b;           /* Amber */
+  --accent-600:#d97706;
+  --dark:#0b1326;
+  --muted:#6b7280;
+}
+
+/* Global */
+html{ scroll-behavior:smooth; }
+body{ color:#111827; }
+.section-title{ font-weight:800; letter-spacing:.2px; }
+.required::after{ content:" *"; color:#ef4444; }
+
+/* Topbar */
+.topbar{ background:var(--dark); color:#e5e7eb; font-size:.95rem; }
+.topbar a{ color:#e5e7eb; opacity:.9; }
+.topbar a:hover{ opacity:1; }
+
+/* Navbar */
+.navbar .nav-link{ font-weight:600; color:#374151; }
+.navbar .nav-link.active,
+.navbar .nav-link:hover{ color:var(--accent-600); }
+
+/* Hero */
+.hero{
+  position:relative;
+  background: radial-gradient(1200px 500px at 20% -10%, #1f2937 0%, #0f172a 60%, #0b1326 100%);
+  color:#f9fafb;
+  overflow:hidden;
+}
+.hero-wave{
+  position:absolute; left:0; right:0; bottom:-1px; height:5px;
+  background:linear-gradient(#ffffff,#ffffff);
+}
+
+/* Crossfade hero */
+.hero-crossfade { position: relative; }
+.cf-slide{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; border-radius:inherit;
+  opacity:0; transition:opacity .9s ease-in-out;
+}
+.cf-slide.active{ opacity:1; }
+.cf-overlay{
+  position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.28));
+  pointer-events:none;
+}
+.cf-caption{
+  position:absolute; left:16px; right:16px; bottom:12px;
+  color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+.cf-dots{
+  position:absolute; left:0; right:0; bottom:10px;
+  display:flex; gap:8px; justify-content:center;
+}
+.cf-dots button{
+  width:8px; height:8px; border-radius:50%;
+  border:none; background:#ffffff90; outline:0; padding:0;
+  transition:transform .2s ease, background .2s ease;
+}
+.cf-dots button.active{ background:#fff; transform:scale(1.1); }
+
+/* Cards & helpers */
+.shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.12); }
+.icon-card i{ font-size:2rem; color:var(--accent-600); }
+
+/* Brands */
+.brand-list { gap:.25rem; }
+.brand-logo{ height:35px; width:auto; transition:transform .2s ease, filter .2s ease, opacity .2s ease; }
+.brand-list .list-group-item:hover .brand-logo{ transform:translateY(-2px); }
+
+
+/* Service tiles */
+.service-tile{
+  background:#fff; border:1px solid #e5e7eb; border-radius:1rem;
+  padding:1rem; box-shadow:0 8px 24px rgba(0,0,0,.06);
+  position:relative; transition:transform .2s ease, box-shadow .2s ease;
+}
+.service-tile::before{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:linear-gradient(135deg, var(--accent), #fef3c7);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; /* gradient border */
+  opacity:.6;
+}
+.service-tile:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(0,0,0,.10); }
+.service-icon{
+  width:44px; height:44px; display:grid; place-items:center;
+  border-radius:50%; background:rgba(245,158,11,.15); color:var(--accent-600); font-size:1.25rem;
+}
+
+/* Brands marquee */
+.brand-marquee{
+  overflow:hidden; padding:8px 0;
+}
+.brand-marquee .track{
+  display:flex; align-items:center; gap:36px;
+  width:max-content; animation:logo-scroll 24s linear infinite;
+}
+.brand-marquee:hover .track{ animation-play-state:paused; }
+.brand-marquee img{
+  height:36px; width:auto; filter:grayscale(10%); opacity:.95;
+  transition:transform .2s ease, filter .2s ease, opacity .2s ease;
+}
+.brand-marquee img:hover{ transform:translateY(-2px); filter:none; opacity:1; }
+
+@keyframes logo-scroll{
+  from{ transform:translateX(0); }
+  to  { transform:translateX(-50%); } /* because we duplicated logos */
+}
+
+
+/* About — stacked photos collage */
+.about-media { position: relative; }
+.about-media .ratio > * { position: absolute; } /* IMPORTANT */
+.about-main{
+  inset:0; width:100%; height:100%;
+  object-fit:cover; transform:scale(1.02);
+  z-index:1;
+}
+.about-tile{
+  width:44%; height:46%; object-fit:cover;
+  border:3px solid #fff;
+  transition:transform .25s ease, box-shadow .25s ease;
+  z-index:2;
+}
+.about-tl{ top:10%; left:6%;  transform:rotate(-4deg); }
+.about-br{ right:6%; bottom:8%; transform:rotate(3deg); }
+.about-chip{ position:absolute; left:12px; top:12px; box-shadow:0 6px 16px rgba(0,0,0,.18); z-index:3; }
+.about-stats{
+  position:absolute; left:12px; bottom:12px; border-radius:14px;
+  background:rgba(15,23,42,.55); color:#fff; backdrop-filter:blur(6px); z-index:3;
+}
+.about-media:hover .about-tile.about-tl{ transform:rotate(-6deg) translateY(-2px); }
+.about-media:hover .about-tile.about-br{ transform:rotate(5deg)  translateY(-2px); }
+.stat{ font-weight:800; font-size:1.35rem; }
+
+/* Feature chips */
+.feature-chip{
+  display:flex; gap:.75rem; align-items:center;
+  padding:.9rem; border:1px solid #e5e7eb; border-radius:1rem; background:#fff;
+}
+.feature-chip i{ font-size:1.4rem; color:var(--accent-600); }
+
+/* Buttons */
+.btn-accent{ background:var(--accent); color:#111827; border:none; font-weight:700; }
+.btn-accent:hover{ background:var(--accent-600); color:#fff; }
+.btn-outline-light:hover{ color:#111827; background:#fff; }
+
+/* WhatsApp FAB */
+.whatsapp-fab{ position:fixed; right:16px; bottom:16px; z-index:1050; }
+
+/* Forms */
+.form-control:focus{ box-shadow:0 0 0 .25rem rgba(245,158,11,.25); border-color:var(--accent); }
+
+/* Footer */
+/* Dark footer (accessible & on-brand) */
+footer{
+  background: var(--dark);                 /* #0b1326 from your theme */
+  color: #e5e7eb;                          /* light text */
+  border-top: 1px solid rgba(255,255,255,.08);
+  position: relative;
+  z-index: 2;
+}
+
+footer .small{ color:#cbd5e1; }            /* lighter body text */
+
+footer a{
+  color: #e5e7eb;
+  text-decoration: none;
+  opacity: .9;
+  transition: color .2s ease, opacity .2s ease;
+}
+
+footer a:hover,
+footer a:focus{
+  color: var(--accent);                    /* amber hover */
+  opacity: 1;
+  outline: none;
+}
+
+/* optional: subtle link separator line you can use as <div class="sep"></div> */
+footer .sep{
+  width:1px; height:18px; background:rgba(255,255,255,.15);
+}
